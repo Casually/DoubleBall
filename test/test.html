@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>云计算，自主投注平台</title>
+    <link href="../css/common.css" rel="stylesheet"/>
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap.css" rel="stylesheet">
+    <script src="../js/jquery-3.0.0.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/js/bootstrap.js"></script>
+    <script src="../js/importUtil.js"></script>
+    <script>
+        var importUtil = new importUtilJs();
+        importUtil.defaultImport();
+
+        var a = 0;
+        var rs = new Array(new Array());
+        function test_reslut() {
+            result = new Result();
+            result.setYingorkui("kui");
+            result.setBeilv(a);
+            alert(result.getYingorkui());
+            rs[0][a] = result;
+            a++;
+        }
+
+        function test_reslut_list() {
+            console.table(rs[0])
+        }
+        alert(parseInt(4/2))
+    </script>
+</head>
+<body>
+    <div class="body">
+        <input type="button" value="Test_Result" onclick="test_reslut()"/>
+        <input type="button" value="Test_Result_list" onclick="test_reslut_list()"/>
+    </div>
+</body>
+</html>

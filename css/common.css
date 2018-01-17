@@ -1,0 +1,187 @@
+*{
+    margin:0;
+    padding: 0px;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+body{
+    min-width: 1200px;
+    min-height: 900px;
+    font-size: 18px;
+    font-family: '微软雅黑';
+    margin: 0;
+    padding: 0;
+    /*background:url(../img/ssq-bc2.jpg) no-repeat;*/
+    /*background-size: 100% 100%;*/
+    background-color:lightgray;
+
+}
+
+.body{
+    margin: auto;
+    overflow: hidden;
+    text-align: center;
+    width: 1190px;
+    border: 1px solid;
+    margin-top: 15px;
+    background-color:#FEFFFF;
+    height:865px;
+}
+
+.result-input{
+    width: 1190px;
+    height: 300px;
+    float: left;
+    margin-top: 10px;
+    border: 0px solid darkorange;
+    /*    background-color: yellow; */
+    color: black;
+}
+
+div{
+    border: 0.5px solid #ccc;
+}
+
+.view-div-min{
+    width: 50px;
+    height: 50px;
+    float: left;
+    text-align: center;
+    line-height: 50px;
+}
+
+.control-panel{
+    width: 100%;
+    float: left;
+    height: 150px;
+    border: 0px solid red;
+    height: 100%;
+}
+
+.result-view{
+    border:0px;
+    width: 1190px;
+    height: 500px;
+    margin-top: 40px;
+    float: left;
+    padding: 5px;
+}
+
+.panel-btn{
+    width: 70px;
+    height: 70px;
+    float: left;
+    cursor: pointer;
+    margin-left: 8px;
+    line-height: 70px;
+    text-align: center;
+    border-radius:10px;
+}
+
+.param-input{
+    width: 80px;
+    height: 25px;
+    border: 0px solid;
+    border-bottom: 2px solid black;
+    outline:none;
+    background-color: white;
+}
+
+input{
+    text-align: center;
+}
+
+.bj-yhs{
+    background-color: #ff6258;
+    color: #FFFFFF;
+}
+
+.bj-zs{
+    background-color: #CCCCFF;
+}
+
+.bj-qs{
+    background-color: #ccff99;
+}
+
+.bj-qls{
+    background-color: #99ccff;
+}
+
+.btn-title{
+    width: 100%;
+    height: 50px;
+}
+
+.yingkui_zhanshi{
+    border: 1px solid black;
+}
+
+[name="daxiao_yingkui_zhanshi_da"]{
+    display: none;
+}
+
+[name="daxiao_yingkui_zhanshi_xiao"]{
+    display: none;
+}
+
+[name="danshuang_yingkui_zhanshi_dan"]{
+    display: none;
+}
+
+[name="danshuang_yingkui_zhanshi_shuang"]{
+    display: none;
+}
+
+[name="longhu_yingkui_zhanshi_long"]{
+    display: none;
+}
+
+[name="longhu_yingkui_zhanshi_hu"]{
+    display: none;
+}
+
+label{
+    font-size: 14px;
+}
+
+.bj-hs{
+    background-color: yellow;
+}
+
+[name="input_num"]{
+    width: 70px;
+    height: 65px;
+    line-height: 70px;
+    font-size:30px;
+}
+
+[name="view_num_one"]{
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+}
+
+[name="view_num_two"]{
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+}
+
+[name="view-input-num"]{
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+}
+
+#view_num_one{
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+}
+#view_num_two{
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+}
