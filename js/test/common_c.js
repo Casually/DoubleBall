@@ -652,6 +652,7 @@ function C_jisuan_yingkui_daxiao_jieguo() {
             parseInt(is_null(daxiao_yingkui_zhanshi_xiao[j].innerHTML)?0:daxiao_yingkui_zhanshi_xiao[j].innerHTML);
     }
 
+    jieyu_daxiao[C_dangqian_qishu] =  getById("daxiao_jieyu").value;
  /*   for(var i = 0;i < C_cunchu_dange_jima.length;i++){
         daxiao_zhanshi[j].innerHTML = C_cunchu_dange_jima[i];
     }
@@ -1287,6 +1288,8 @@ function C_jisuan_yingkui_danshuang_jieguo() {
             parseInt(is_null(danshuang_yingkui_zhanshi_shuang[j].innerHTML)?0:danshuang_yingkui_zhanshi_shuang[j].innerHTML);
     }
 
+    jieyu_danshuang[C_dangqian_qishu_danshuang] =  getById("danshuang_jieyu").value;
+
     var num_all = 0;
     for(var i = 0;i<danshuang_zhanshi.length - 1;i++){
         num_all += is_null(danshuang_zhanshi[i].innerHTML)?0:parseInt(danshuang_zhanshi[i].innerHTML);
@@ -1919,6 +1922,8 @@ function C_jisuan_yingkui_longhu_jieguo() {
             parseInt(is_null(longhu_yingkui_zhanshi_hu[j].innerHTML)?0:longhu_yingkui_zhanshi_hu[j].innerHTML);
     }
 
+    jieyu_longhu[C_dangqian_qishu_longhu] =  getById("longhu_jieyu").value;
+
     var num_all = 0;
     for(var i = 0;i<longhu_zhanshi.length - 1;i++){
         num_all += is_null(longhu_zhanshi[i].innerHTML)?0:parseInt(longhu_zhanshi[i].innerHTML);
@@ -1939,23 +1944,30 @@ function C_jisuan_yingkui_longhu_jieguo() {
 function jisuanjima_c(a,b,c) {
     var a1 = 0;
     var b1 = 0;
-    if (a != 0) {
-        console.log("a: " + a.getProfitOrLoss());
-        if (dox(c)) {
-            a1 = a.getDevoteRate();
-        } else {
-            a1 = -(a.getDevoteRate());
+    try{
+        if (a != 0) {
+            if (dox(c)) {
+                a1 = a.getDevoteRate();
+            } else {
+                a1 = -(a.getDevoteRate());
+            }
         }
+    }catch (e){
+        console.log(3)
     }
 
-    if (b != 0) {
-        console.log("b：" + b.getProfitOrLoss());
-        if (dox(c)) {
-            b1 = -(b.getDevoteRate());
-        } else {
-            b1 = b.getDevoteRate();
+    try{
+        if (b != 0) {
+            if (dox(c)) {
+                b1 = -(b.getDevoteRate());
+            } else {
+                b1 = b.getDevoteRate();
+            }
         }
+    }catch (e){
+        console.log(e)
     }
+
 
     console.log("当前基码数：" + a1 + " + " + b1 + " = " + (a1 + b1));
     return a1 + b1;
@@ -1969,23 +1981,31 @@ function jisuanjima_c(a,b,c) {
 function jisuanjima_dos_c(a,b,c) {
     var a1 = 0;
     var b1 = 0;
-    if(a != 0){
-        console.log("a: " + a.getProfitOrLoss());
-        if(dos(c)){
-            a1 = a.getDevoteRate();
-        }else{
-            a1 = -(a.getDevoteRate());
+    try{
+        if(a != 0){
+            if(dos(c)){
+                a1 = a.getDevoteRate();
+            }else{
+                a1 = -(a.getDevoteRate());
+            }
         }
+    }catch (e){
+        console.log(e)
     }
 
-    if(b != 0){
-        console.log("b：" + b.getProfitOrLoss());
-        if(dos(c)){
-            b1 = -(b.getDevoteRate());
-        }else{
-            b1 = b.getDevoteRate();
+
+    try{
+        if(b != 0){
+            if(dos(c)){
+                b1 = -(b.getDevoteRate());
+            }else{
+                b1 = b.getDevoteRate();
+            }
         }
+    }catch (e){
+        console.log(e)
     }
+
 
     console.log("当前基码数：" + a1 + " + " + b1 + " = " + (a1 + b1));
     return a1 + b1;
@@ -1998,23 +2018,30 @@ function jisuanjima_dos_c(a,b,c) {
 function jisuanjima_loh_c(a,b,c) {
     var a1 = 0;
     var b1 = 0;
-    if(a != 0){
-        console.log("a: " + a.getProfitOrLoss());
-        if(loh(c)){
-            a1 = a.getDevoteRate();
-        }else{
-            a1 = -(a.getDevoteRate());
+    try{
+        if(a != 0){
+            if(loh(c)){
+                a1 = a.getDevoteRate();
+            }else{
+                a1 = -(a.getDevoteRate());
+            }
         }
+    }catch (e){
+        console.log(e)
     }
 
-    if(b != 0){
-        console.log("b：" + b.getProfitOrLoss());
-        if(loh(c)){
-            b1 = -(b.getDevoteRate());
-        }else{
-            b1 = b.getDevoteRate();
+    try{
+        if(b != 0){
+            if(loh(c)){
+                b1 = -(b.getDevoteRate());
+            }else{
+                b1 = b.getDevoteRate();
+            }
         }
+    }catch (e){
+        console.log(e)
     }
+
 
     console.log("当前基码数：" + a1 + " + " + b1 + " = " + (a1 + b1));
     return a1 + b1;
