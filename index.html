@@ -5,27 +5,14 @@
     <title>云计算，自主投注平台</title>
     <link href="css/common.css" rel="stylesheet"/>
     <link href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-    <script src="js/jquery-3.0.0.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-    <!--    <script src="js/common.js"></script>-->
-    <script src="js/test/common_bak.js"></script>
-    <!--    <script src="js/result.js"></script>-->
-    <script src="js/importUtil.js"></script>
-    <script>
-        var importUtilJs = new importUtilJs();
-        importUtilJs.defaultImport();
-        importUtilJs.importOne("/test/common_a.js")
-        importUtilJs.importOne("/test/common_b.js")
-        importUtilJs.importOne("/test/common_c.js")
-    </script>
 </head>
-<body style="background-color: #efefef;   background-image: url(/hgtz/statics/timg.jpg);">
+<body style="background-color: #efefef;   background-image: url('/hgtz/statics/timg.jpg');">
 <div class="body">
     <div class="btn-title" style='font-size:25px ;border:0px'>
         <!-- 按扭区域 -->
         <ul class="nav navbar-nav">
             <li class="active" style="color: #ff6258"><a href="#" data-toggle="modal" data-target=".bs-example-modal-lg" style="color: #ff6258;font-size:22px">查看盈亏记录 </a></li>
-            <li><a href="#" style="color:sandybrown;font-size:22px;margin-left:30px;margin-right:30px" onclick="tiaozhuan_type('B')">清空所有</a></li>
+            <li><a href="#" style="color:sandybrown;font-size:22px;margin-left:30px;margin-right:30px" onclick="clearAllStore();tiaozhuan_type('B')">清空所有</a></li>
             <li class="dropdown">
                 <a href="#" style="color:darkturquoise;font-size:22px" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">选择规则</a>
                 <ul class="dropdown-menu">
@@ -38,6 +25,18 @@
             <li>
                 <a style="color: #ff8b20;margin-left: 200px;font-size:22px">当前模式：<span id="this_type"></span></a>
             </li>
+            <!--<li class="dropdown">
+                <a href="#" style="color:darkturquoise;font-size:22px" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">快捷操作</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#" onclick="tiaozhuan_type('A')">A模式</a></li>
+                    <li><a href="#" onclick="tiaozhuan_type('B')">B模式</a></li>
+                    <li><a href="#" onclick="tiaozhuan_type('C')">C模式</a></li>
+                    &lt;!&ndash;<li role="separator" class="divider"></li>&ndash;&gt;
+                </ul>
+            </li>-->
+            <!--<li>
+                <a style='margin-left:80px;font-size:22px' onclick="huifushuju(1)">恢复数据</a>
+            </li>-->
             <li>
                 <a style='margin-left:190px;font-size:22px' onclick="huitui(1)">返回上一步</a>
             </li>
@@ -437,6 +436,22 @@
 </div>
 </body>
 </html>
+<script src="js/jquery-3.0.0.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+<script src="js/count/common_bak.js"></script>
+<script src="js/importUtil.js"></script>
 <script>
+    var importUtilJs = new importUtilJs();
+    importUtilJs.defaultImport();
     init_load();
+    if(Amoshikaiqi){
+        importUtilJs.importOne("/count/common_a.js")
+    }
+    if(Bmoshikaiqi){
+        importUtilJs.importOne("/count/common_b.js")
+    }
+    if(Cmoshikaiqi){
+        importUtilJs.importOne("/count/common_c.js")
+    }
 </script>
+
