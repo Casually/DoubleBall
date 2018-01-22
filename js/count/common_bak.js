@@ -20,6 +20,18 @@ var danshuang_yingkui_zhanshi_shuang = getByName("danshuang_yingkui_zhanshi_shua
 var longhu_yingkui_zhanshi_long = getByName("longhu_yingkui_zhanshi_long");
 var longhu_yingkui_zhanshi_hu = getByName("longhu_yingkui_zhanshi_hu");
 
+//记录说有展示盈亏数据
+var zhanshicishu = 0;
+var daxiaoyinkuizhanshisuoyou = new Array();
+var danshuangyinkuizhanshisuoyou = new Array();
+var longhuyinkuizhanshisuoyou = new Array();
+var daxiao_yingkui_zhanshi_da_zong = new Array();
+var daxiao_yingkui_zhanshi_xiao_zong = new Array();
+var danshuang_yingkui_zhanshi_dan_zong = new Array();
+var danshuang_yingkui_zhanshi_shuang_zong = new Array();
+var longhu_yingkui_zhanshi_long_zong = new Array();
+var longhu_yingkui_zhanshi_hu_zong = new Array();
+
 //定义大小，单双，龙虎，混合计算按钮
 var da_xiao = false;
 var dan_shuang = false;
@@ -267,6 +279,40 @@ var longhu_quren = false;
 var hunhejisuan_quren = false;
 
 function input_num_enter() {//确认事件
+
+    //记录说有展示盈亏数据
+    var daxiaoyinkuizhanshidange = new Array();
+    var danshuangyinkuizhanshidange = new Array();
+    var longhuyinkuizhanshidange = new Array();
+    var daxiao_yingkui_zhanshi_da_dange = new Array();
+    var daxiao_yingkui_zhanshi_xiao_dange = new Array();
+    var danshuang_yingkui_zhanshi_dan_dange = new Array();
+    var danshuang_yingkui_zhanshi_shuang_dange = new Array();
+    var longhu_yingkui_zhanshi_long_dange = new Array();
+    var longhu_yingkui_zhanshi_hu_dange = new Array();
+
+    for(var i = 0;i<11;i++){
+        daxiaoyinkuizhanshidange[i] = is_null(daxiao_zhanshi[i].innerHTML)?0:daxiao_zhanshi[i].innerHTML;
+        danshuangyinkuizhanshidange[i] = is_null(danshuang_zhanshi[i].innerHTML)?0:danshuang_zhanshi[i].innerHTML;
+        longhuyinkuizhanshidange[i] = is_null(longhu_zhanshi[i].innerHTML)?0:longhu_zhanshi[i].innerHTML;
+
+        daxiao_yingkui_zhanshi_da_dange[i] = is_null(daxiao_yingkui_zhanshi_da[i].innerHTML)?0:daxiao_yingkui_zhanshi_da[i].innerHTML;
+        daxiao_yingkui_zhanshi_xiao_dange[i] = is_null(daxiao_yingkui_zhanshi_xiao[i].innerHTML)?0:daxiao_yingkui_zhanshi_xiao[i].innerHTML;
+        danshuang_yingkui_zhanshi_dan_dange[i] = is_null(danshuang_yingkui_zhanshi_dan[i].innerHTML)?0:danshuang_yingkui_zhanshi_dan[i].innerHTML;
+        danshuang_yingkui_zhanshi_shuang_dange[i] = is_null(danshuang_yingkui_zhanshi_shuang[i].innerHTML)?0:danshuang_yingkui_zhanshi_shuang[i].innerHTML;
+        longhu_yingkui_zhanshi_long_dange[i] = is_null(longhu_yingkui_zhanshi_long[i].innerHTML)?0:longhu_yingkui_zhanshi_long[i].innerHTML;
+        longhu_yingkui_zhanshi_hu_dange[i] = is_null(longhu_yingkui_zhanshi_hu[i].innerHTML)?0:longhu_yingkui_zhanshi_hu[i].innerHTML;
+    }
+    daxiaoyinkuizhanshisuoyou[zhanshicishu] = daxiaoyinkuizhanshidange;
+    danshuangyinkuizhanshisuoyou[zhanshicishu] = danshuangyinkuizhanshidange;
+    longhuyinkuizhanshisuoyou[zhanshicishu] = longhuyinkuizhanshidange;
+    daxiao_yingkui_zhanshi_da_zong[zhanshicishu] =daxiao_yingkui_zhanshi_da_dange;
+    daxiao_yingkui_zhanshi_xiao_zong[zhanshicishu] = daxiao_yingkui_zhanshi_xiao_dange;
+    danshuang_yingkui_zhanshi_dan_zong[zhanshicishu] = danshuang_yingkui_zhanshi_dan_dange;
+    danshuang_yingkui_zhanshi_shuang_zong[zhanshicishu] = danshuang_yingkui_zhanshi_shuang_dange;
+    longhu_yingkui_zhanshi_long_zong[zhanshicishu] = longhu_yingkui_zhanshi_long_dange;
+    longhu_yingkui_zhanshi_hu_zong[zhanshicishu] = longhu_yingkui_zhanshi_hu_dange;
+    zhanshicishu++;
 
     if (!da_xiao && !dan_shuang && !long_hu && !hunhe_jisuan) {
         alert("请选择投注计算类型");
@@ -2469,6 +2515,77 @@ function huitui_yangsi(num) {
  */
 function huitui_shuju(num) {
     qishu = qishu - num;
+    zhanshicishu = zhanshicishu - num;
+    daxiaoyinkuizhanshisuoyou.splice(daxiaoyinkuizhanshisuoyou.length - num, num);
+    if(daxiaoyinkuizhanshisuoyou.length != 0){
+        var daxiao_zhanshi_dange = daxiaoyinkuizhanshisuoyou[daxiaoyinkuizhanshisuoyou.length - 1];
+        for(var i = 0;i<11;i++){
+            daxiao_zhanshi[i].innerHTML = daxiao_zhanshi_dange[i]
+        }
+    }
+    danshuangyinkuizhanshisuoyou.splice(danshuangyinkuizhanshisuoyou.length - num, num);
+    if(danshuangyinkuizhanshisuoyou.length != 0){
+        var danshuang_zhanshi_dage = danshuangyinkuizhanshisuoyou[danshuangyinkuizhanshisuoyou.length - 1];
+        for(var i = 0;i<11;i++){
+            danshuang_zhanshi[i].innerHTML = danshuang_zhanshi_dage[i]
+        }
+    }
+    longhuyinkuizhanshisuoyou.splice(longhuyinkuizhanshisuoyou.length - num, num);
+    if(longhuyinkuizhanshisuoyou.length != 0){
+        var longhu_zhanshi_dange = longhuyinkuizhanshisuoyou[longhuyinkuizhanshisuoyou.length - 1];
+        for(var i = 0;i<11;i++){
+            longhu_zhanshi[i].innerHTML = longhu_zhanshi_dange[i];
+        }
+    }
+
+    daxiao_yingkui_zhanshi_da_zong.splice(daxiao_yingkui_zhanshi_da_zong.length - num, num);
+    if(longhuyinkuizhanshisuoyou.length != 0){
+        var daxiao_yingkui_zhanshi_da_d = daxiao_yingkui_zhanshi_da_zong[daxiao_yingkui_zhanshi_da_zong.length - 1];
+        for(var i = 0;i<11;i++){
+            daxiao_yingkui_zhanshi_da[i].innerHTML = daxiao_yingkui_zhanshi_da_d[i];
+        }
+    }
+
+    daxiao_yingkui_zhanshi_xiao_zong.splice(daxiao_yingkui_zhanshi_xiao_zong.length - num, num);
+    if(daxiao_yingkui_zhanshi_xiao_zong.length != 0){
+        var daxiao_yingkui_zhanshi_xiao_d = daxiao_yingkui_zhanshi_xiao_zong[daxiao_yingkui_zhanshi_xiao_zong.length - 1];
+        for(var i = 0;i<11;i++){
+            daxiao_yingkui_zhanshi_xiao[i].innerHTML = daxiao_yingkui_zhanshi_xiao_d[i];
+        }
+    }
+
+    danshuang_yingkui_zhanshi_dan_zong.splice(danshuang_yingkui_zhanshi_dan_zong.length - num, num);
+    if(daxiao_yingkui_zhanshi_xiao_zong.length != 0){
+        var dd = danshuang_yingkui_zhanshi_dan_zong[danshuang_yingkui_zhanshi_dan_zong.length - 1];
+        for(var i = 0;i<11;i++){
+            danshuang_yingkui_zhanshi_dan[i].innerHTML = dd[i];
+        }
+    }
+
+    danshuang_yingkui_zhanshi_shuang_zong.splice(danshuang_yingkui_zhanshi_shuang_zong.length - num, num);
+    if(danshuang_yingkui_zhanshi_shuang_zong.length != 0){
+        var dd = danshuang_yingkui_zhanshi_shuang_zong[danshuang_yingkui_zhanshi_shuang_zong.length - 1];
+        for(var i = 0;i<11;i++){
+            danshuang_yingkui_zhanshi_shuang[i].innerHTML = dd[i];
+        }
+    }
+
+    longhu_yingkui_zhanshi_long_zong.splice(longhu_yingkui_zhanshi_long_zong.length - num, num);
+    if(danshuang_yingkui_zhanshi_shuang_zong.length != 0){
+        var dd = longhu_yingkui_zhanshi_long_zong[longhu_yingkui_zhanshi_long_zong.length - 1];
+        for(var i = 0;i<11;i++){
+            longhu_yingkui_zhanshi_long[i].innerHTML = dd[i];
+        }
+    }
+
+    longhu_yingkui_zhanshi_hu_zong.splice(longhu_yingkui_zhanshi_hu_zong.length - num, num);
+    if(danshuang_yingkui_zhanshi_shuang_zong.length != 0){
+        var dd = longhu_yingkui_zhanshi_hu_zong[longhu_yingkui_zhanshi_hu_zong.length - 1];
+        for(var i = 0;i<11;i++){
+            longhu_yingkui_zhanshi_hu[i].innerHTML = dd[i];
+        }
+    }
+
     if (da_xiao) {
         if (qishu == 0) {
             danxiang_touzhu_daxiao_da = [false, false, false, false, false, false, false, false, false, false, false,];
@@ -2510,7 +2627,11 @@ function huitui_shuju(num) {
         dcrai_all = -num;
 
         meiyicitouzhujieguo.splice(meiyicitouzhujieguo.length - num, num);
-        tihuanshuzushuju(meiyicitouzhujieguo, dancitouzhujieguo);
+        if(meiyicitouzhujieguo.length != 0){
+            dancitouzhujieguo = meiyicitouzhujieguo[meiyicitouzhujieguo.length - 1];
+        }else{
+            dancitouzhujieguo = [0,0,0,0,0,0,0,0,0,0]
+        }
 
         meiyicitouru = meiyicitouru - num;
     }
@@ -2552,7 +2673,11 @@ function huitui_shuju(num) {
         //tihuanshuzushuju(devote_count_record_all_danshuang,dcrai_all_danshuang);
         dcrai_all_danshuang -= num;
         meiyicitouzhujieguo_danshuang.splice(meiyicitouzhujieguo_danshuang.length - num, num);
-        tihuanshuzushuju(meiyicitouzhujieguo_danshuang, dancitouzhujieguo_danshuang);
+        if(meiyicitouzhujieguo_danshuang.length != 0){
+            dancitouzhujieguo_danshuang = meiyicitouzhujieguo_danshuang[meiyicitouzhujieguo_danshuang.length - 1];
+        }else{
+            dancitouzhujieguo_danshuang = [0,0,0,0,0,0,0,0,0,0]
+        }
 
         meiyicitouru_danshuang = meiyicitouru_danshuang - num;
     }
@@ -2594,12 +2719,20 @@ function huitui_shuju(num) {
         //tihuanshuzushuju(devote_count_record_all_longhu,dcrai_all_longhu);
         dcrai_all_longhu -= num;
         meiyicitouzhujieguo_longhu.splice(meiyicitouzhujieguo_longhu.length - num, num);
-        tihuanshuzushuju(meiyicitouzhujieguo_longhu, dancitouzhujieguo_longhu);
+        if(meiyicitouzhujieguo_longhu.length != 0){
+            dancitouzhujieguo_longhu = meiyicitouzhujieguo_longhu[meiyicitouzhujieguo_longhu.length - 1];
+        }else{
+            dancitouzhujieguo_longhu = [0,0,0,0,0,0,0,0,0,0]
+        }
 
         meiyicitouru_longhu = meiyicitouru_longhu - num;
     }
 
-    tihuanshuzushuju(cunchusuoyou, cunchudage);
+    if(cunchusuoyou.length != 0){
+        cunchudage = cunchusuoyou[cunchusuoyou.length - 1];
+    }else{
+        cunchudage = [0,0,0,0,0,0,0,0,0,0]
+    }
 }
 
 function huitui_moshi(num) {
@@ -2611,10 +2744,18 @@ function huitui_moshi(num) {
             }
 
             A_cunchu_suoyou_jima_da.splice(A_cunchu_suoyou_jima_da.length - num, num);
-            tihuanshuzushuju(A_cunchu_suoyou_jima_da, A_cunchu_dange_jima_da);
+            if(A_cunchu_suoyou_jima_da.length != 0){
+                A_cunchu_dange_jima_da = A_cunchu_suoyou_jima_da[A_cunchu_suoyou_jima_da.length - 1];
+            }else{
+                A_cunchu_dange_jima_da = [0,0,0,0,0,0,0,0,0,0]
+            }
 
             A_cunchu_suoyou_jima_xiao.splice(A_cunchu_suoyou_jima_xiao.length - num, num);
-            tihuanshuzushuju(A_cunchu_suoyou_jima_xiao, A_cunchu_dange_jima_xiao);
+            if(A_cunchu_suoyou_jima_xiao.length != 0){
+                A_cunchu_dange_jima_xiao = A_cunchu_suoyou_jima_xiao[A_cunchu_suoyou_jima_xiao.length - 1];
+            }else{
+                A_cunchu_dange_jima_xiao = [0,0,0,0,0,0,0,0,0,0]
+            }
 
 
             for (var i = 0; i < 10; i++) {
@@ -2640,10 +2781,18 @@ function huitui_moshi(num) {
             }
 
             A_cunchu_suoyou_jima_danshuang_dan.splice(A_cunchu_suoyou_jima_danshuang_dan.length - num, num);
-            tihuanshuzushuju(A_cunchu_suoyou_jima_danshuang_dan, A_cunchu_dange_jima_danshuang_dan);
+            if(A_cunchu_suoyou_jima_danshuang_dan.length != 0){
+                A_cunchu_dange_jima_danshuang_dan = A_cunchu_suoyou_jima_danshuang_dan[A_cunchu_suoyou_jima_danshuang_dan.length - 1];
+            }else{
+                A_cunchu_dange_jima_danshuang_dan = [0,0,0,0,0,0,0,0,0,0]
+            }
 
             A_cunchu_suoyou_jima_danshuang_shuang.splice(A_cunchu_suoyou_jima_danshuang_shuang.length - num, num);
-            tihuanshuzushuju(A_cunchu_suoyou_jima_danshuang_shuang, A_cunchu_dange_jima_danshuang_shuang);
+            if(A_cunchu_suoyou_jima_danshuang_shuang.length != 0){
+                A_cunchu_dange_jima_danshuang_shuang = A_cunchu_suoyou_jima_danshuang_shuang[A_cunchu_suoyou_jima_danshuang_shuang.length - 1];
+            }else{
+                A_cunchu_dange_jima_danshuang_shuang = [0,0,0,0,0,0,0,0,0,0]
+            }
 
 
             for (var i = 0; i < 10; i++) {
@@ -2668,10 +2817,18 @@ function huitui_moshi(num) {
             }
 
             A_cunchu_suoyou_jima_longhu_long.splice(A_cunchu_suoyou_jima_longhu_long.length - num, num);
-            tihuanshuzushuju(A_cunchu_suoyou_jima_longhu_long, A_cunchu_dange_jima_longhu_long);
+            if(A_cunchu_suoyou_jima_longhu_long.length != 0){
+                A_cunchu_dange_jima_longhu_long = A_cunchu_suoyou_jima_longhu_long[A_cunchu_suoyou_jima_longhu_long.length - 1];
+            }else{
+                A_cunchu_dange_jima_longhu_long = [0,0,0,0,0,0,0,0,0,0]
+            }
 
             A_cunchu_suoyou_jima_longhu_hu.splice(A_cunchu_suoyou_jima_longhu_hu.length - num, num);
-            tihuanshuzushuju(A_cunchu_suoyou_jima_longhu_hu, A_cunchu_dange_jima_longhu_hu);
+            if(A_cunchu_suoyou_jima_longhu_hu.length != 0){
+                A_cunchu_dange_jima_longhu_hu = A_cunchu_suoyou_jima_longhu_hu[A_cunchu_suoyou_jima_longhu_hu.length - 1];
+            }else{
+                A_cunchu_dange_jima_longhu_hu = [0,0,0,0,0,0,0,0,0,0]
+            }
 
 
             for (var i = 0; i < 10; i++) {
@@ -2699,8 +2856,12 @@ function huitui_moshi(num) {
             }
 
             b_cunchu_suoyou_jima.splice(b_cunchu_suoyou_jima.length - num, num);
+            if(b_cunchu_suoyou_jima.length != 0){
+                b_cunchu_dange_jima = b_cunchu_suoyou_jima[b_cunchu_suoyou_jima.length - 1];
+            }else{
+                b_cunchu_dange_jima = [0,0,0,0,0,0,0,0,0,0]
+            }
             jieyu_daxiao.splice(jieyu_daxiao.length - num, num);
-            tihuanshuzushuju(b_cunchu_suoyou_jima, b_cunchu_dange_jima);
 
             for (var i = 0; i < 10; i++) {
                 if (dcrai_da[i] <= 0) {
@@ -2724,8 +2885,12 @@ function huitui_moshi(num) {
             }
 
             b_cunchu_suoyou_jima_danshuang.splice(b_cunchu_suoyou_jima_danshuang.length - num, num);
+            if(b_cunchu_suoyou_jima_danshuang.length != 0){
+                b_cunchu_dange_jima_danshuang = b_cunchu_suoyou_jima_danshuang[b_cunchu_suoyou_jima_danshuang.length - 1];
+            }else{
+                b_cunchu_dange_jima_danshuang = [0,0,0,0,0,0,0,0,0,0]
+            }
             jieyu_danshuang.splice(jieyu_danshuang.length - num, num);
-            tihuanshuzushuju(b_cunchu_suoyou_jima_danshuang, b_cunchu_dange_jima_danshuang);
 
             for (var i = 0; i < 10; i++) {
                 if (dcrai_dan[i] <= 0) {
@@ -2749,8 +2914,12 @@ function huitui_moshi(num) {
             }
 
             b_cunchu_suoyou_jima_longhu.splice(b_cunchu_suoyou_jima_longhu.length - num, num);
+            if(b_cunchu_suoyou_jima_longhu.length != 0){
+                b_cunchu_dange_jima_longhu = b_cunchu_suoyou_jima_longhu[b_cunchu_suoyou_jima_longhu.length - 1];
+            }else{
+                b_cunchu_dange_jima_longhu = [0,0,0,0,0,0,0,0,0,0];
+            }
             jieyu_longhu.splice(jieyu_longhu.length - num, num);
-            tihuanshuzushuju(b_cunchu_suoyou_jima_longhu, b_cunchu_dange_jima_longhu);
 
 
             for (var i = 0; i < 10; i++) {
@@ -2777,7 +2946,11 @@ function huitui_moshi(num) {
             }
 
             C_cunchu_suoyou_jima.splice(C_cunchu_suoyou_jima.length - num, num);
-            tihuanshuzushuju(C_cunchu_suoyou_jima, C_cunchu_dange_jima);
+            if(C_cunchu_suoyou_jima.length != 0){
+                C_cunchu_dange_jima = C_cunchu_suoyou_jima[C_cunchu_suoyou_jima.length - 1];
+            }else{
+                C_cunchu_dange_jima = [0,0,0,0,0,0,0,0,0,0];
+            }
 
 
             for (var i = 0; i < 10; i++) {
@@ -2802,7 +2975,11 @@ function huitui_moshi(num) {
             }
 
             C_cunchu_suoyou_jima_danshuang.splice(C_cunchu_suoyou_jima_danshuang.length - num, num);
-            tihuanshuzushuju(C_cunchu_suoyou_jima_danshuang, C_cunchu_dange_jima_danshuang);
+            if(C_cunchu_suoyou_jima_danshuang.length != 0){
+                C_cunchu_dange_jima_danshuang = C_cunchu_suoyou_jima_danshuang[C_cunchu_suoyou_jima_danshuang.length - 1];
+            }else{
+                C_cunchu_dange_jima_danshuang = [0,0,0,0,0,0,0,0,0,0];
+            }
 
             for (var i = 0; i < 10; i++) {
                 if (dcrai_dan[i] <= 0) {
@@ -2826,7 +3003,11 @@ function huitui_moshi(num) {
             }
 
             C_cunchu_suoyou_jima_longhu.splice(C_cunchu_suoyou_jima_longhu.length - num, num);
-            tihuanshuzushuju(C_cunchu_suoyou_jima_longhu, C_cunchu_dange_jima_longhu);
+            if(C_cunchu_suoyou_jima_longhu.length != 0){
+                C_cunchu_dange_jima_longhu = C_cunchu_suoyou_jima_longhu[C_cunchu_suoyou_jima_longhu.length - 1];
+            }else{
+                C_cunchu_dange_jima_longhu = [0,0,0,0,0,0,0,0,0,0];
+            }
 
 
             for (var i = 0; i < 10; i++) {
@@ -2915,301 +3096,5 @@ function clearAllStore(){
     localStorage.clear();
 }
 
-/**
- * 恢复数据
- */
-function huifushuju() {
-    huoquhuancushuju();
-    if(Amoshikaiqi){
-        if(getStore("state") != "A"){
-            alert("当前模式无数据恢复")
-            return;
-        }
-        huoquhuancunA();
-    }
-    if(Bmoshikaiqi){
-        if(getStore("state") != ""){
-            alert("当前模式无数据恢复")
-            return;
-        }
-        huoquhuancunB();
-    }
-    if(Cmoshikaiqi){
-        if(getStore("state") != "C"){
-            alert("当前模式无数据恢复")
-            return;
-        }
-        huoquhuancunC();
-    }
 
-    huitui(0);
-}
 
-/**
- * 记录所有数据
- */
-function jilusuoyoushuju() {
-    console.log("开始记录数据")
-    cunchushuju();
-    if(Amoshikaiqi){
-        cuncushujuA();
-    }
-    if(Bmoshikaiqi){
-        cuncushujuB();
-    }
-    if(Cmoshikaiqi){
-        cuncushujuC();
-    }
-}
-
-/**
- * 将公共数据存放到缓存
- */
-function cunchushuju() {
-
-    if(Amoshikaiqi){
-        setStore("state","A");
-    }
-    if(Bmoshikaiqi){
-        setStore("state","B");
-    }
-    if(Cmoshikaiqi){
-        setStore("state","C");
-    }
-
-    setStore("input_num_index",input_num_index);
-    setStore("qishu",qishu);
-    setStore("yuanbeijingse",yuanbeijingse);
-    setStore("cunchusuoyou",cunchusuoyou);
-    setStore("cunchudage",cunchudage);
-    setStore("jieyu_daxiao",jieyu_daxiao);
-    setStore("jieyu_danshuang",jieyu_danshuang);
-    setStore("jieyu_longhu",jieyu_longhu);
-    setStore("danxiang_touzhu_daxiao_da",danxiang_touzhu_daxiao_da);
-    setStore("danxiang_touzhu_daxiao_xiao",danxiang_touzhu_daxiao_xiao);
-    setStore("devote_all_record_da",devote_all_record_da);
-    setStore("dcrai_da",dcrai_da);
-    setStore("devote_all_record_xiao",devote_all_record_xiao);
-    setStore("dcrai_xiao",dcrai_xiao);
-    setStore("devote_count_record_all",devote_count_record_all);
-    setStore("dcrai_all",dcrai_all);
-    setStore("meiyicitouzhujieguo",meiyicitouzhujieguo);
-    setStore("dancitouzhujieguo",dancitouzhujieguo);
-    setStore("meiyicitouru",meiyicitouru);
-    setStore("devote_all_record_dan",devote_all_record_dan);
-    setStore("dcrai_dan",dcrai_dan);
-    setStore("danxiang_touzhu_danshuang_dan",danxiang_touzhu_danshuang_dan);
-    setStore("danxiang_touzhu_danshuang_shuang",danxiang_touzhu_danshuang_shuang);
-    setStore("devote_all_record_shuang",devote_all_record_shuang);
-    setStore("dcrai_shuang",dcrai_shuang);
-    setStore("devote_count_record_all_danshuang",devote_count_record_all_danshuang);
-    setStore("dcrai_all_danshuang",dcrai_all_danshuang);
-    setStore("meiyicitouzhujieguo_danshuang",meiyicitouzhujieguo_danshuang);
-    setStore("dancitouzhujieguo_danshuang",dancitouzhujieguo_danshuang);
-    setStore("meiyicitouru_danshuang",meiyicitouru_danshuang);
-    setStore("devote_all_record_long",devote_all_record_long);
-    setStore("danxiang_touzhu_longhu_long",danxiang_touzhu_longhu_long);
-    setStore("danxiang_touzhu_longhu_hu",danxiang_touzhu_longhu_hu);
-    setStore("devote_all_record_hu",devote_all_record_hu);
-    setStore("dcrai_hu",dcrai_hu);
-    setStore("devote_count_record_all_longhu",devote_count_record_all_longhu);
-    setStore("dcrai_all_longhu",dcrai_all_longhu);
-    setStore("meiyicitouzhujieguo_longhu",meiyicitouzhujieguo_longhu);
-    setStore("dancitouzhujieguo_longhu",dancitouzhujieguo_longhu);
-    setStore("meiyicitouru_longhu",meiyicitouru_longhu);
-    setStore("qingchuqianda",qingchuqianda);
-    setStore("qingchuqianxiao",qingchuqianxiao);
-    setStore("qingchuqiandan",qingchuqiandan);
-    setStore("qingchuqianshuang",qingchuqianshuang);
-    setStore("qingchuqianlong",qingchuqianlong);
-    setStore("qingchuqianhu",qingchuqianhu);
-}
-
-/**
- * A模式计算的数据存入缓存
- */
-function cuncushujuA() {
-    setStore("A_cunchu_suoyou_jima_da",A_cunchu_suoyou_jima_da);
-    setStore("A_cunchu_suoyou_jima_xiao",A_cunchu_suoyou_jima_xiao);
-    setStore("A_cunchu_dange_jima_da",A_cunchu_dange_jima_da);
-    setStore("A_cunchu_dange_jima_xiao",A_cunchu_dange_jima_xiao);
-    setStore("A_cunchu_suoyou_jima_danshuang_dan",A_cunchu_suoyou_jima_danshuang_dan);
-    setStore("A_cunchu_suoyou_jima_danshuang_shuang",A_cunchu_suoyou_jima_danshuang_shuang);
-    setStore("A_cunchu_dange_jima_danshuang_dan",A_cunchu_dange_jima_danshuang_dan);
-    setStore("A_cunchu_dange_jima_danshuang_shuang",A_cunchu_dange_jima_danshuang_shuang);
-    setStore("A_cunchu_suoyou_jima_longhu_long",A_cunchu_suoyou_jima_longhu_long);
-    setStore("A_cunchu_suoyou_jima_longhu_hu",A_cunchu_suoyou_jima_longhu_hu);
-    setStore("A_cunchu_dange_jima_longhu_long",A_cunchu_dange_jima_longhu_long);
-    setStore("A_cunchu_dange_jima_longhu_hu",A_cunchu_dange_jima_longhu_hu);
-    setStore("A_dangqian_qishu",A_dangqian_qishu);
-    setStore("A_dangqian_qishu_danshuang",A_dangqian_qishu_danshuang);
-    setStore("A_dangqian_qishu_longhu",A_dangqian_qishu_longhu);
-    setStore("shifoutouzhuguo_da",shifoutouzhuguo_da);
-    setStore("shifoutouzhuguo_xiao",shifoutouzhuguo_xiao);
-    setStore("shifoutouzhuguo_long",shifoutouzhuguo_long);
-    setStore("shifoutouzhuguo_hu",shifoutouzhuguo_hu);
-    setStore("shifoutouzhuguo_dan",shifoutouzhuguo_dan);
-    setStore("shifoutouzhuguo_shuang",shifoutouzhuguo_shuang);
-}
-
-/**
- * B模式计算的数据存入缓存
- */
-function cuncushujuB() {
-    setStore("b_cunchu_suoyou_jima",b_cunchu_suoyou_jima);
-    setStore("b_cunchu_dange_jima",b_cunchu_dange_jima);
-    setStore("b_cunchu_suoyou_jima_danshuang",b_cunchu_suoyou_jima_danshuang);
-    setStore("b_cunchu_dange_jima_danshuang",b_cunchu_dange_jima_danshuang);
-    setStore("b_cunchu_suoyou_jima_longhu",b_cunchu_suoyou_jima_longhu);
-    setStore("b_cunchu_dange_jima_longhu",b_cunchu_dange_jima_longhu);
-    setStore("b_dangqian_qishu",b_dangqian_qishu);
-    setStore("b_dangqian_qishu_danshuang",b_dangqian_qishu_danshuang);
-    setStore("b_dangqian_qishu_longhu",b_dangqian_qishu_longhu);
-    setStore("shifoutouzhuguo_da",shifoutouzhuguo_da);
-    setStore("shifoutouzhuguo_xiao",shifoutouzhuguo_xiao);
-    setStore("shifoutouzhuguo_long",shifoutouzhuguo_long);
-    setStore("shifoutouzhuguo_hu",shifoutouzhuguo_hu);
-    setStore("shifoutouzhuguo_dan",shifoutouzhuguo_dan);
-    setStore("shifoutouzhuguo_shuang",shifoutouzhuguo_shuang);
-}
-
-/**
- * C模式计算的数据存入缓存
- */
-function cuncushujuC() {
-    setStore("C_cunchu_suoyou_jima",C_cunchu_suoyou_jima);
-    setStore("C_cunchu_dange_jima",C_cunchu_dange_jima);
-    setStore("C_cunchu_suoyou_jima_danshuang",C_cunchu_suoyou_jima_danshuang);
-    setStore("C_cunchu_dange_jima_danshuang",C_cunchu_dange_jima_danshuang);
-    setStore("C_cunchu_suoyou_jima_longhu",C_cunchu_suoyou_jima_longhu);
-    setStore("C_cunchu_dange_jima_longhu",C_cunchu_dange_jima_longhu);
-    setStore("C_dangqian_qishu",C_dangqian_qishu);
-    setStore("C_dangqian_qishu_danshuang",C_dangqian_qishu_danshuang);
-    setStore("C_dangqian_qishu_longhu",C_dangqian_qishu_longhu);
-    setStore("shifoutouzhuguo_da",shifoutouzhuguo_da);
-    setStore("shifoutouzhuguo_xiao",shifoutouzhuguo_xiao);
-    setStore("shifoutouzhuguo_long",shifoutouzhuguo_long);
-    setStore("shifoutouzhuguo_hu",shifoutouzhuguo_hu);
-    setStore("shifoutouzhuguo_dan",shifoutouzhuguo_dan);
-    setStore("shifoutouzhuguo_shuang",shifoutouzhuguo_shuang);
-}
-
-/**
- * 获取缓存中的公共数据
- */
-function huoquhuancushuju() {
-    input_num_index = getStore("input_num_index");
-    qishu = getStore("qishu");
-    yuanbeijingse = getStore("yuanbeijingse");
-    cunchusuoyou = getStore("cunchusuoyou");
-    cunchudage = getStore("cunchudage");
-    jieyu_daxiao = getStore("jieyu_daxiao");
-    jieyu_danshuang = getStore("jieyu_danshuang");
-    jieyu_longhu = getStore("jieyu_longhu");
-    danxiang_touzhu_daxiao_da = getStore("danxiang_touzhu_daxiao_da");
-    danxiang_touzhu_daxiao_xiao = getStore("danxiang_touzhu_daxiao_xiao");
-    devote_all_record_da = getStore("devote_all_record_da");
-    dcrai_da = getStore("dcrai_da");
-    devote_all_record_xiao = getStore("devote_all_record_xiao");
-    dcrai_xiao = getStore("dcrai_xiao");
-    devote_count_record_all = getStore("devote_count_record_all");
-    dcrai_all = getStore("dcrai_all");
-    meiyicitouzhujieguo = getStore("meiyicitouzhujieguo");
-    dancitouzhujieguo = getStore("dancitouzhujieguo");
-    meiyicitouru = getStore("meiyicitouru");
-    devote_all_record_dan = getStore("devote_all_record_dan");
-    dcrai_dan = getStore("dcrai_dan");
-    danxiang_touzhu_danshuang_dan = getStore("danxiang_touzhu_danshuang_dan");
-    danxiang_touzhu_danshuang_shuang = getStore("danxiang_touzhu_danshuang_shuang");
-    devote_all_record_shuang = getStore("devote_all_record_shuang");
-    dcrai_shuang = getStore("dcrai_shuang");
-    devote_count_record_all_danshuang = getStore("devote_count_record_all_danshuang");
-    dcrai_all_danshuang = getStore("dcrai_all_danshuang");
-    meiyicitouzhujieguo_danshuang = getStore("meiyicitouzhujieguo_danshuang");
-    dancitouzhujieguo_danshuang = getStore("dancitouzhujieguo_danshuang");
-    meiyicitouru_danshuang = getStore("meiyicitouru_danshuang");
-    devote_all_record_long = getStore("devote_all_record_long");
-    dcrai_long = getStore("dcrai_long");
-    danxiang_touzhu_longhu_long = getStore("danxiang_touzhu_longhu_long");
-    danxiang_touzhu_longhu_hu = getStore("danxiang_touzhu_longhu_hu");
-    devote_all_record_hu = getStore("devote_all_record_hu");
-    dcrai_hu = getStore("dcrai_hu");
-    devote_count_record_all_longhu = getStore("devote_count_record_all_longhu");
-    dcrai_all_longhu = getStore("dcrai_all_longhu");
-    meiyicitouzhujieguo_longhu = getStore("meiyicitouzhujieguo_longhu");
-    dancitouzhujieguo_longhu = getStore("dancitouzhujieguo_longhu");
-    meiyicitouru_longhu = getStore("meiyicitouru_longhu");
-    qingchuqianda = getStore("qingchuqianda");
-    qingchuqianxiao = getStore("qingchuqianxiao");
-    qingchuqiandan = getStore("qingchuqiandan");
-    qingchuqianshuang = getStore("qingchuqianshuang");
-    qingchuqianlong = getStore("qingchuqianlong");
-    qingchuqianhu = getStore("qingchuqianhu");
-}
-
-/**
- * 获取缓存中A模式数据
- */
-function huoquhuancunA() {
-    A_cunchu_suoyou_jima_da = getStore("A_cunchu_suoyou_jima_da");
-    A_cunchu_suoyou_jima_xiao = getStore("A_cunchu_suoyou_jima_xiao");
-    A_cunchu_dange_jima_da = getStore("A_cunchu_dange_jima_da");
-    A_cunchu_dange_jima_xiao = getStore("A_cunchu_dange_jima_xiao");
-    A_cunchu_suoyou_jima_danshuang_dan = getStore("A_cunchu_suoyou_jima_danshuang_dan");
-    A_cunchu_suoyou_jima_danshuang_shuang = getStore("A_cunchu_suoyou_jima_danshuang_shuang");
-    A_cunchu_dange_jima_danshuang_dan = getStore("A_cunchu_dange_jima_danshuang_dan");
-    A_cunchu_dange_jima_danshuang_shuang = getStore("A_cunchu_dange_jima_danshuang_shuang");
-    A_cunchu_suoyou_jima_longhu_long = getStore("A_cunchu_suoyou_jima_longhu_long");
-    A_cunchu_suoyou_jima_longhu_hu = getStore("A_cunchu_suoyou_jima_longhu_hu");
-    A_cunchu_dange_jima_longhu_long = getStore("A_cunchu_dange_jima_longhu_long");
-    A_cunchu_dange_jima_longhu_hu = getStore("A_cunchu_dange_jima_longhu_hu");
-    A_dangqian_qishu = getStore("A_dangqian_qishu");
-    A_dangqian_qishu_danshuang = getStore("A_dangqian_qishu_danshuang");
-    A_dangqian_qishu_longhu = getStore("A_dangqian_qishu_longhu");
-    shifoutouzhuguo_da = getStore("shifoutouzhuguo_da");
-    shifoutouzhuguo_xiao = getStore("shifoutouzhuguo_xiao");
-    shifoutouzhuguo_long = getStore("shifoutouzhuguo_long");
-    shifoutouzhuguo_hu = getStore("shifoutouzhuguo_hu");
-    shifoutouzhuguo_dan = getStore("shifoutouzhuguo_dan");
-    shifoutouzhuguo_shuang = getStore("shifoutouzhuguo_shuang");
-}
-/**
- * 获取缓存中B模式数据
- */
-function huoquhuancunB() {
-    b_cunchu_suoyou_jima = getStore("b_cunchu_suoyou_jima");
-    b_cunchu_dange_jima = getStore("b_cunchu_dange_jima");
-    b_cunchu_suoyou_jima_danshuang = getStore("b_cunchu_suoyou_jima_danshuang");
-    b_cunchu_dange_jima_danshuang = getStore("b_cunchu_dange_jima_danshuang");
-    b_cunchu_suoyou_jima_longhu = getStore("b_cunchu_suoyou_jima_longhu");
-    b_cunchu_dange_jima_longhu = getStore("b_cunchu_dange_jima_longhu");
-    b_dangqian_qishu = getStore("b_dangqian_qishu");
-    b_dangqian_qishu_danshuang = getStore("b_dangqian_qishu_danshuang");
-    b_dangqian_qishu_longhu = getStore("b_dangqian_qishu_longhu");
-    shifoutouzhuguo_da = getStore("shifoutouzhuguo_da");
-    shifoutouzhuguo_xiao = getStore("shifoutouzhuguo_xiao");
-    shifoutouzhuguo_long = getStore("shifoutouzhuguo_long");
-    shifoutouzhuguo_hu = getStore("shifoutouzhuguo_hu");
-    shifoutouzhuguo_dan = getStore("shifoutouzhuguo_dan");
-    shifoutouzhuguo_shuang = getStore("shifoutouzhuguo_shuang");
-}
-/**
- * 获取缓存中C模式数据
- */
-function huoquhuancunC() {
-    C_cunchu_suoyou_jima = getStore("C_cunchu_suoyou_jima");
-    C_cunchu_dange_jima = getStore("C_cunchu_dange_jima");
-    C_cunchu_suoyou_jima_danshuang = getStore("C_cunchu_suoyou_jima_danshuang");
-    C_cunchu_dange_jima_danshuang = getStore("C_cunchu_dange_jima_danshuang");
-    C_cunchu_suoyou_jima_longhu = getStore("C_cunchu_suoyou_jima_longhu");
-    C_cunchu_dange_jima_longhu = getStore("C_cunchu_dange_jima_longhu");
-    C_dangqian_qishu = getStore("C_dangqian_qishu");
-    C_dangqian_qishu_danshuang = getStore("C_dangqian_qishu_danshuang");
-    C_dangqian_qishu_longhu = getStore("C_dangqian_qishu_longhu");
-    shifoutouzhuguo_da = getStore("shifoutouzhuguo_da");
-    shifoutouzhuguo_xiao = getStore("shifoutouzhuguo_xiao");
-    shifoutouzhuguo_long = getStore("shifoutouzhuguo_long");
-    shifoutouzhuguo_hu = getStore("shifoutouzhuguo_hu");
-    shifoutouzhuguo_dan = getStore("shifoutouzhuguo_dan");
-    shifoutouzhuguo_shuang = getStore("shifoutouzhuguo_shuang");
-}
